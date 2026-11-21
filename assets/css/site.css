@@ -337,3 +337,106 @@ img {
   font-size: 1.1rem;
   color: var(--accent);
 }
+
+/*
+ * Figma 画板页面：固定尺寸的设计稿按容器宽度等比缩放。
+ * 用法：<div class="artboard" data-artboard data-artboard-width="1920" data-artboard-height="…">
+ *        <div class="artboard-stage">…绝对定位的图层…</div></div>
+ * 缩放由 site.js 计算。
+ */
+.artboard {
+  position: relative;
+  width: 100%;
+  margin-top: 3rem;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 2px rgba(var(--shadow-tint), 0.06), 0 12px 32px rgba(var(--shadow-tint), 0.08);
+}
+
+.artboard-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+
+.artboard-stage > * {
+  position: absolute;
+  margin: 0;
+}
+
+.artboard-stage p {
+  line-height: normal;
+  word-break: break-word;
+}
+
+.artboard-stage img {
+  display: block;
+  max-width: none;
+  height: auto;
+  border-radius: 0;
+}
+
+.artboard-stage img.fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.artboard-stage img.cover {
+  object-fit: cover;
+}
+
+/* Lark Player 项目画板 */
+.artboard--lark .artboard-stage {
+  width: 1920px;
+  height: 2286px;
+  background: #f1f1f1;
+
+  --lark-dark: #121313;
+  --lark-blue: #2391fe;
+  --lark-pill: #bcdeff;
+  --lark-ink: #373737;
+  --lark-ink-strong: #3d3836;
+  --lark-muted: #958f8d;
+  --lark-muted-2: #7b7370;
+  --lark-rule: #d9d9d9;
+  --lark-round: "Yuanti SC", "YuanTi SC", "Noto Sans SC", "PingFang SC", sans-serif;
+  --lark-maru: "975Maru SC", "Yuanti SC", "Noto Sans SC", "PingFang SC", sans-serif;
+  --lark-display: "Tilt Warp", "Yuanti SC", sans-serif;
+}
+
+.lark-pill {
+  top: 1763px;
+  width: 211px;
+  height: 48px;
+  border-radius: 24px;
+  background: var(--lark-pill);
+}
+
+.lark-dark {
+  background: var(--lark-dark);
+}
+
+.lark-outline-pill {
+  top: 1391px;
+  height: 50px;
+  border: 3px solid var(--lark-ink);
+  border-radius: 36.5px;
+}
+
+.artboard-stage .lark-tag {
+  font-family: var(--lark-maru);
+  font-weight: 700;
+  font-size: 26.24px;
+  line-height: 1.98;
+  color: var(--lark-ink);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.lark-issue {
+  top: 1761px;
+  letter-spacing: -2.0992px;
+}
