@@ -25,6 +25,7 @@
 3. 将图片放在 `assets/images/projects/my-project/`。
 4. 在项目 HTML 中使用 `../assets/images/projects/my-project/图片名` 引用图片。
 5. 所有页面继续引用 `assets/css/site.css`，不要创建重复样式文件。
+6. 修改 `site.css` 或 `site.js` 后，把所有页面里的 `?v=数字` 加 1，避免浏览器用旧缓存导致页面错乱。
 
 ## 发布
 
