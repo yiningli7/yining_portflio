@@ -7,7 +7,7 @@
   --content-width: 68rem;
   --page-padding: 1.5rem;
 
-  --bg: #f6f3ec;
+  --bg: #ffffff;
   --bg-raised: #eee8da;
   --ink: #211d17;
   --ink-muted: #6b6558;
@@ -40,18 +40,6 @@ body {
   background-color: var(--bg);
   color: var(--ink);
   position: relative;
-}
-
-/* subtle paper grain so flat sections don't feel sterile */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.035;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  z-index: 0;
 }
 
 .skip-link {
@@ -101,7 +89,7 @@ footer {
   padding-block: 1.5rem;
   position: sticky;
   top: 0;
-  background: rgba(246, 243, 236, 0.82);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
   z-index: 10;
   border-bottom: 1px solid var(--line);
@@ -573,8 +561,11 @@ img {
   aspect-ratio: 1 / 1;
 }
 
-.media-frame--white {
+.media-frame--white,
+.media-frame--sketch {
   background: #fff;
+  /* 白底图在纯白页面上用描边保留卡片轮廓 */
+  border: 1px solid var(--line);
 }
 
 .media-frame--sketch {
