@@ -388,98 +388,369 @@ img {
   object-fit: cover;
 }
 
-/* Lark Player 项目画板 */
-.artboard--lark .artboard-stage {
-  width: 1920px;
-  height: 2286px;
-  background: #f1f1f1;
-
-  --lark-dark: #121313;
-  --lark-blue: #2391fe;
-  --lark-pill: #bcdeff;
-  --lark-ink: #373737;
-  --lark-ink-strong: #3d3836;
-  --lark-muted: #958f8d;
-  --lark-muted-2: #7b7370;
-  --lark-rule: #d9d9d9;
-  --lark-round: "Yuanti SC", "YuanTi SC", "Noto Sans SC", "PingFang SC", sans-serif;
-  --lark-maru: "975Maru SC", "Yuanti SC", "Noto Sans SC", "PingFang SC", sans-serif;
-  --lark-display: "Tilt Warp", "Yuanti SC", sans-serif;
-}
-
-.lark-pill {
-  top: 1763px;
-  width: 211px;
-  height: 48px;
-  border-radius: 24px;
-  background: var(--lark-pill);
-}
-
-.lark-dark {
-  background: var(--lark-dark);
-}
-
-.lark-outline-pill {
-  top: 1391px;
-  height: 50px;
-  border: 3px solid var(--lark-ink);
-  border-radius: 36.5px;
-}
-
-.artboard-stage .lark-tag {
-  font-family: var(--lark-maru);
-  font-weight: 700;
-  font-size: 26.24px;
-  line-height: 1.98;
-  color: var(--lark-ink);
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-
-.lark-issue {
-  top: 1761px;
-  letter-spacing: -2.0992px;
-}
-
-/* 16:9 的后续页，紧接上一块画板 */
-.artboard--lark.artboard--slide {
-  margin-top: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  /* 裁掉向上的阴影，避免和上一块画板之间出现接缝 */
-  clip-path: inset(0 -48px -64px -48px);
-}
-
-.artboard--lark:has(+ .artboard--slide) {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.artboard--lark.artboard--slide .artboard-stage {
-  height: 1080px;
-}
-
-.artboard-stage .lark-body {
-  font-family: var(--lark-round);
-  font-size: 26.24px;
-  line-height: 1.98;
-  color: var(--lark-ink);
-}
-
-.artboard-stage .lark-body ul {
+/* ---------- Tags ---------- */
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin: 0;
   padding: 0;
-  list-style: disc;
 }
 
-.artboard-stage .lark-body li {
-  margin-left: 39.36px;
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: var(--bg-raised);
+  color: var(--ink-muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.artboard-stage .lark-step {
-  font-family: var(--lark-display);
-  font-size: 64px;
-  color: #dcdcdc;
-  text-transform: uppercase;
-  white-space: nowrap;
+.tag:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.tag[aria-current="page"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.tag-count {
+  opacity: 0.6;
+}
+
+.tag-index {
+  margin-top: 2rem;
+}
+
+/* ---------- 项目列表（项目页列表、tag 聚合页共用） ---------- */
+.project-list {
+  list-style: none;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.project-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-item > a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.project-item > a:hover {
+  color: var(--accent);
+}
+
+.project-item .arrow {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink-muted);
+  transition: transform 0.25s ease, color 0.2s ease;
+}
+
+.project-item > a:hover .arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+.project-item-meta {
+  margin: 0.5rem 0 0.9rem;
+  color: var(--ink-muted);
+}
+
+.project-item-meta span {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- 项目详情页：图文交替的阅读节奏 ---------- */
+.case {
+  max-width: none;
+}
+
+.case section {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.case-header h1 {
+  max-width: none;
+  margin-bottom: 2rem;
+}
+
+.case-intro {
+  display: grid;
+  gap: 2rem;
+}
+
+.case-tags {
+  margin-top: 1.5rem;
+}
+
+.case-meta {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: 2rem;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.case-meta dt {
+  color: var(--ink-muted);
+  margin-bottom: 0.2rem;
+}
+
+.case-meta dd {
+  margin: 0;
+}
+
+/* 图片：整行 / 多栏 */
+.case-media {
+  margin: 0;
+}
+
+.case > .case-media,
+.case > .case-grid {
+  margin-top: 1.5rem;
+}
+
+.case-media img {
+  width: 100%;
+}
+
+.case-media figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+}
+
+.case-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.media-frame {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-raised);
+}
+
+.media-frame img {
+  height: 100%;
+  border-radius: 0;
+  object-fit: contain;
+}
+
+.media-frame img.cover {
+  object-fit: cover;
+}
+
+/* 透明底插画放在浅色面板上，四周留白 */
+.media-frame--panel {
+  padding: 8%;
+  background: #e9eef3;
+}
+
+.media-frame--wide {
+  aspect-ratio: 1 / 1;
+}
+
+.media-frame--white {
+  background: #fff;
+}
+
+.media-frame--sketch {
+  aspect-ratio: 16 / 10;
+  padding: 6%;
+  background: #fff;
+}
+
+/* 主视觉 */
+.case-hero {
+  margin-top: 4rem;
+}
+
+.case-hero-stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 58%, rgba(35, 145, 254, 0.28), transparent 55%),
+    #121313;
+}
+
+.case-hero-bird {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: auto !important;
+  height: 86%;
+  transform: translateX(-50%);
+  border-radius: 0;
+}
+
+.case-hero-star {
+  position: absolute;
+  right: 14%;
+  top: 14%;
+  width: 9% !important;
+  transform: rotate(-15deg);
+  border-radius: 0;
+}
+
+/* 文字段：桌面端放在右半栏，左侧留白 */
+.case-text {
+  margin-top: 5rem;
+}
+
+.case-text-body {
+  max-width: 36rem;
+}
+
+.case-step {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--accent);
+}
+
+.case-text-head {
+  align-self: start;
+}
+
+.case-text h2 {
+  font-size: clamp(1.5rem, 2vw + 0.8rem, 2rem);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+.case-text p,
+.case-points {
+  color: var(--ink-muted);
+  line-height: 1.8;
+}
+
+.case-text p {
+  margin: 0 0 1rem;
+}
+
+.case-points {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.case-points li + li {
+  margin-top: 0.35rem;
+}
+
+.case-points strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* 分段下的小节（如设计策略里的 #01、#02） */
+.case-text--sub {
+  margin-top: 3.5rem;
+}
+
+.case-text h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  margin: 0 0 1rem;
+}
+
+.case-text--sub .case-step {
+  font-style: normal;
+  color: var(--ink-muted);
+}
+
+.case-text--closing p {
+  color: var(--ink);
+  font-size: 1.1rem;
+}
+
+.case-text--closing .back-link {
+  margin: 2rem 0 0;
+}
+
+@media (min-width: 48rem) {
+  .case-intro {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+
+  .case-text {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 7rem;
+  }
+
+  /* 标题在左栏靠左，正文从页面中线开始 */
+  .case-text-head {
+    grid-column: 1;
+    padding-right: 2rem;
+  }
+
+  .case-text-body {
+    grid-column: 2;
+  }
+
+  .case-text-head h2,
+  .case-text-head h3 {
+    margin-bottom: 0;
+  }
+
+  .case-text--sub {
+    margin-top: 4.5rem;
+  }
+
+  .case > .case-media,
+  .case > .case-grid {
+    margin-top: 2.5rem;
+  }
+
+  .case-grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 手机：三栏图改为两栏 + 一张通栏，保持图片足够大 */
+@media (max-width: 47.99rem) {
+  .case-grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .case-grid--3 > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .case-grid--3 > :last-child .media-frame {
+    aspect-ratio: 16 / 9;
+  }
 }

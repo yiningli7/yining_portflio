@@ -13,9 +13,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <title>Projects | Yining Portfolio</title>
-  <link rel="stylesheet" href="../assets/css/site.css?v=2">
+  <link rel="stylesheet" href="../assets/css/site.css?v=4">
 </head>
-<body>
+<body data-base="../">
   <a class="skip-link" href="#main-content">跳到主要内容</a>
   <header class="site-header">
     <a class="site-name" href="../">Yining Portfolio</a>
@@ -32,10 +32,10 @@
       <hr class="rule">
       <p class="kicker">Projects</p>
       <h1>项目列表</h1>
-      <p class="lead">每个项目使用一个独立 HTML 文件，并共用全站样式。</p>
-      <ul class="index-list">
-        <li><a href="lark-player-ip.html">Lark Player 品牌IP形象升级 <span class="arrow">→</span></a></li>
-        <li><a href="project-template.html">项目页面模板 <span class="arrow">→</span></a></li>
+      <p class="lead">品牌、IP 与插画相关的项目。点击 tag 可以查看同类项目。</p>
+      <!-- 列表由 site.js 根据 assets/data/projects.js 生成；下面是未加载脚本时的备用链接 -->
+      <ul class="project-list" data-project-list>
+        <li class="project-item"><a href="lark-player-ip.html"><span class="project-item-title">Lark Player IP</span> <span class="arrow" aria-hidden="true">→</span></a></li>
       </ul>
     </section>
   </main>
@@ -43,6 +43,7 @@
   <footer>
     <p>© <span data-current-year></span> Yining</p>
   </footer>
-  <script src="../assets/js/site.js?v=2"></script>
+  <script src="../assets/data/projects.js?v=4"></script>
+  <script src="../assets/js/site.js?v=4"></script>
 </body>
 </html>

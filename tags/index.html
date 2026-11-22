@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="按 tag 浏览 Yining 的项目">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta property="og:title" content="Tags | Yining Portfolio">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Tags | Yining Portfolio</title>
+  <link rel="stylesheet" href="../assets/css/site.css?v=4">
+</head>
+<body data-base="../">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="site-header">
+    <a class="site-name" href="../">Yining Portfolio</a>
+    <nav aria-label="主要导航">
+      <a href="../">Home</a>
+      <a href="../aboutme/">About Me</a>
+      <a href="../projects/">Projects</a>
+      <a href="../artifacts/">Artifacts</a>
+    </nav>
+  </header>
+
+  <!-- 内容由 site.js 根据 ?tag= 和 assets/data/projects.js 生成 -->
+  <main id="main-content" data-tag-page>
+    <section>
+      <a class="back-link" href="../projects/">All projects</a>
+      <p class="kicker">Tag</p>
+      <h1 data-tag-title>全部 Tags</h1>
+      <p class="lead" data-tag-lead>选择一个 tag，查看相关项目。</p>
+      <div class="tag-index" data-tag-all></div>
+      <ul class="project-list" data-tag-results></ul>
+      <noscript><p class="lead">请开启 JavaScript 以按 tag 浏览项目。</p></noscript>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span data-current-year></span> Yining</p>
+  </footer>
+  <script src="../assets/data/projects.js?v=4"></script>
+  <script src="../assets/js/site.js?v=4"></script>
+</body>
+</html>
