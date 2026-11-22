@@ -440,3 +440,46 @@ img {
   top: 1761px;
   letter-spacing: -2.0992px;
 }
+
+/* 16:9 的后续页，紧接上一块画板 */
+.artboard--lark.artboard--slide {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  /* 裁掉向上的阴影，避免和上一块画板之间出现接缝 */
+  clip-path: inset(0 -48px -64px -48px);
+}
+
+.artboard--lark:has(+ .artboard--slide) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.artboard--lark.artboard--slide .artboard-stage {
+  height: 1080px;
+}
+
+.artboard-stage .lark-body {
+  font-family: var(--lark-round);
+  font-size: 26.24px;
+  line-height: 1.98;
+  color: var(--lark-ink);
+}
+
+.artboard-stage .lark-body ul {
+  margin: 0;
+  padding: 0;
+  list-style: disc;
+}
+
+.artboard-stage .lark-body li {
+  margin-left: 39.36px;
+}
+
+.artboard-stage .lark-step {
+  font-family: var(--lark-display);
+  font-size: 64px;
+  color: #dcdcdc;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
