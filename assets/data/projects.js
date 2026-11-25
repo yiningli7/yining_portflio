@@ -9,7 +9,9 @@
 window.PORTFOLIO = {
   tags: {
     "branding": { label: "Branding" },
-    "ip-design": { label: "IP Design" }
+    "ip-design": { label: "IP Design" },
+    "campaign-design": { label: "Campaign Design" },
+    "key-visual": { label: "Key Visual" }
   },
 
   projects: [
@@ -21,6 +23,15 @@ window.PORTFOLIO = {
       cover: "assets/images/projects/lark-player-ip/a2c5b.png",
       year: 2026,
       tags: ["branding", "ip-design"]
+    },
+    {
+      slug: "lenovo-campus-2027",
+      title: "联想 2027 校园招聘视觉设计",
+      summary: "以「联想你的未来」为主题的 2027 校招主视觉设计。",
+      url: "projects/lenovo-campus-2027.html",
+      cover: "assets/images/projects/lenovo-campus-2027/f91d2.png",
+      year: 2026,
+      tags: ["campaign-design", "key-visual"]
     }
   ]
 };

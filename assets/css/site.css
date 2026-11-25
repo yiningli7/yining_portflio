@@ -915,3 +915,306 @@ img {
     aspect-ratio: 16 / 9;
   }
 }
+
+/* ---------- 联想 2027 校招：首屏 KV ----------
+ * 设计稿为 1920 宽画板：文字从 x=76 开始，主视觉从 x=280 开始向右出血，高 880。
+ * 桌面端用容器查询单位（cqi）按画板比例缩放，手机端改为上下堆叠。
+ */
+.kv {
+  display: grid;
+  gap: 2rem;
+}
+
+.kv-media {
+  margin: 0;
+  position: relative;
+  aspect-ratio: 1640 / 880;
+  overflow: hidden;
+  border-radius: var(--kv-radius, var(--radius-md));
+  /* 设计稿蒙版：左侧渐隐到白色；四角统一圆角 */
+  -webkit-mask-image: linear-gradient(99deg, transparent 12.7%, #000 45.3%);
+  mask-image: linear-gradient(99deg, transparent 12.7%, #000 45.3%);
+}
+
+.kv-media img {
+  position: absolute;
+  left: 4.85%;
+  top: -2.05%;
+  width: 108.54%;
+  height: 113.78%;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* 手机端标题在上、主视觉在下 */
+.kv-copy {
+  order: -1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.kv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 2rem;
+}
+
+.kv-badge-label {
+  display: inline-flex;
+  align-items: center;
+  height: 2.25rem;
+  padding-inline: 1rem;
+  border-radius: 999px;
+  background: #e3f4fd;
+  color: #000;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.kv-badge-icon {
+  position: relative;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+}
+
+.kv-badge-icon img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 箭头在稿中旋转 45°，指向右下 */
+.kv-badge-icon .kv-badge-arrow {
+  inset: 32%;
+  width: 36%;
+  height: 36%;
+  transform: rotate(45deg);
+}
+
+.kv-eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.kv-header h1 {
+  max-width: none;
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 7vw, 3.5rem);
+  line-height: 1.135;
+  letter-spacing: 0;
+  color: #000;
+}
+
+.kv-meta {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 3rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  font-size: 0.95rem;
+  color: #000;
+}
+
+.kv-header .case-tags {
+  margin-top: 2rem;
+}
+
+@media (min-width: 48rem) {
+  .kv {
+    display: block;
+    position: relative;
+    container-type: inline-size;
+    aspect-ratio: 1844 / 880;
+  }
+
+  .kv-media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 88.94%;
+    /* 稿中左侧圆角 77px（画板宽 1844） */
+    --kv-radius: 4.18cqi;
+  }
+
+  .kv-copy {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .kv-badge {
+    position: absolute;
+    top: 7.73%;
+    left: 0;
+    margin: 0;
+    gap: 0.43cqi;
+  }
+
+  .kv-badge-label {
+    height: 2.55cqi;
+    padding-inline: 1.03cqi 1.3cqi;
+    font-size: 1.3cqi;
+  }
+
+  .kv-badge-icon {
+    width: 2.55cqi;
+    height: 2.55cqi;
+  }
+
+  .kv-eyebrow {
+    position: absolute;
+    top: 25.34%;
+    left: 0;
+    margin: 0;
+    font-size: 2.43cqi;
+    line-height: 1.5;
+  }
+
+  .kv-header h1 {
+    position: absolute;
+    top: 32.27%;
+    left: 0;
+    font-size: 5.2cqi;
+    text-shadow: 1.46cqi 0.22cqi 3.43cqi #fff;
+  }
+
+  .kv-meta {
+    position: absolute;
+    top: 91.14%;
+    left: 1.19cqi;
+    margin: 0;
+    gap: 0 2.6cqi;
+    font-size: max(0.8rem, 0.87cqi);
+    line-height: 1.5;
+  }
+}
+
+/* ---------- 联想 2027 校招：分段 ----------
+ * 分段标题背后叠一层浅灰英文大字（data-ghost），对应稿中 THEME / PROCESS。
+ */
+.kv-section {
+  margin-top: 6rem;
+}
+
+.kv-section p {
+  max-width: none;
+}
+
+.kv-section-title {
+  position: relative;
+  margin: 0;
+  padding-top: clamp(1.5rem, 3.2vw, 2.25rem);
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0;
+  color: #000;
+  isolation: isolate;
+}
+
+.kv-section-title::before {
+  content: attr(data-ghost);
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0.1em;
+  font-family: "Syncopate", var(--font-body);
+  font-weight: 700;
+  font-size: 1.7em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #f2f2f2;
+  pointer-events: none;
+}
+
+.kv-label {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.kv-slogan {
+  margin-top: 4.5rem;
+  text-align: center;
+}
+
+.kv-slogan-text {
+  margin: 0.25rem 0 0;
+  font-size: clamp(1.6rem, 3vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.135;
+  color: #000;
+}
+
+.kv-slogan-line {
+  display: block;
+  width: 1px;
+  height: 2rem;
+  margin: 0.5rem auto 0.75rem;
+  background: #000;
+}
+
+.kv-slogan p:not(.kv-label):not(.kv-slogan-text) {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #000;
+  text-wrap: balance;
+}
+
+.kv-strategy {
+  margin-top: 7rem;
+  text-align: center;
+}
+
+.kv-strategy h3 {
+  margin: 0 0 2.5rem;
+  font-family: var(--font-body);
+  font-size: clamp(1.6rem, 3vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.135;
+  color: #000;
+}
+
+.kv-strategy dl {
+  display: grid;
+  gap: 1.75rem;
+  margin: 0;
+}
+
+.kv-strategy dt {
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #000;
+}
+
+.kv-strategy dd {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.56);
+}
+
+@media (min-width: 48rem) {
+  .kv-section {
+    margin-top: 8rem;
+  }
+}
