@@ -601,38 +601,6 @@ img {
   border-radius: 0;
 }
 
-.explore-label {
-  position: absolute;
-  font-size: max(0.75rem, 1.55cqw);
-  font-weight: 600;
-  color: var(--ink);
-  white-space: nowrap;
-}
-
-.explore-label--top {
-  top: 2.3%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.explore-label--bottom {
-  bottom: 2.3%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.explore-label--left {
-  left: 1.8%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.explore-label--right {
-  right: 3%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .scroll-hint {
   margin-left: 0.25rem;
 }
@@ -744,20 +712,27 @@ img {
   border-radius: 0;
 }
 
-/* 文字段：桌面端放在右半栏，左侧留白 */
+/*
+ * 项目正文的网格系统
+ * - 12 栏网格，栏间距 2rem；分段标题占第 1–6 栏，所有正文统一从第 7 栏开始，
+ *   全页只保留两条文字对齐线。
+ * - 间距只用 4 个值：1rem（段内）、2.5rem（文字与图）、4rem（小节）、6rem（分段）。
+ * - 每个分段顶部一条细线，把「标题 + 正文 + 图片」归为一个模块。
+ */
 .case-text {
-  margin-top: 5rem;
+  margin-top: 4rem;
+}
+
+.case-text:not(.case-text--sub):not(.case-text--closing) {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
 }
 
 .case-text-body {
   max-width: 36rem;
 }
 
-/*
- * 标题层级
- * 二级（分段，如「03 · 设计策略」）：强调色小标签 + 大号衬线标题
- * 三级（小节，如「#01」）：灰色编号 + 无衬线粗体小标题，左侧细线表示从属
- */
+/* 二级（分段）：强调色小标签 + 大号衬线标题 */
 .case-text .case-step {
   margin: 0 0 0.75rem;
   font-family: var(--font-body);
@@ -776,6 +751,8 @@ img {
   font-size: clamp(1.75rem, 2.4vw + 0.9rem, 2.5rem);
   line-height: 1.2;
   margin-bottom: 1rem;
+  /* 换行时两行长度均衡，避免最后一行只剩一个字 */
+  text-wrap: balance;
 }
 
 .case-text p,
@@ -786,6 +763,11 @@ img {
 
 .case-text p {
   margin: 0 0 1rem;
+}
+
+.case-text-body > :last-child,
+.case-sub > :last-child {
+  margin-bottom: 0;
 }
 
 .case-points {
@@ -802,28 +784,56 @@ img {
   font-weight: 600;
 }
 
-/* 分段下的小节（如设计策略里的 #01、#02） */
-.case-text--sub {
-  margin-top: 3.5rem;
-}
-
-.case-text h3 {
+/* 三级（小节）：只出现在正文栏里，编号与标题同一行 */
+.case-sub h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
   font-family: var(--font-body);
-  font-weight: 600;
   font-size: 1.125rem;
+  font-weight: 600;
   line-height: 1.4;
-  margin: 0 0 1rem;
+  color: var(--ink);
 }
 
-.case-text--sub .case-text-head {
-  padding-left: 1rem;
-  border-left: 2px solid var(--line);
-}
-
-.case-text--sub .case-step {
-  margin-bottom: 0.25rem;
+.case-sub-num {
+  font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+.case-text-body > .case-sub {
+  margin-top: 2.5rem;
+}
+
+/* 问题清单：整行三栏的编号模块，替代零散的项目符号 */
+.case-problems {
+  list-style: none;
+  counter-reset: problem;
+  display: grid;
+  gap: 1rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+}
+
+.case-problems li {
+  counter-increment: problem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ink);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.case-problems li::before {
+  content: counter(problem, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--ink-muted);
 }
 
@@ -844,38 +854,36 @@ img {
 
   .case-text {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 7rem;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 2rem;
+    margin-top: 6rem;
   }
 
-  /* 标题在左栏靠左，正文从页面中线开始 */
   .case-text-head {
-    grid-column: 1;
-    padding-right: 2rem;
+    grid-column: 1 / span 6;
   }
 
   .case-text-body {
-    grid-column: 2;
+    grid-column: 7 / -1;
   }
 
-  /* 右栏正文与左栏标题（而不是上方的编号标签）顶部对齐：
-     下移的距离 = 编号标签行高（0.85rem × 1.4）+ 编号下方间距 */
-  .case-text:not(.case-text--closing) .case-text-body {
+  /* 右栏正文与左栏标题顶部对齐：下移 = 编号标签行高（0.85rem × 1.4）+ 标签下方间距 */
+  .case-text-head + .case-text-body {
     padding-top: calc(0.85rem * 1.4 + 0.6rem);
   }
 
-  .case-text.case-text--sub:not(.case-text--closing) .case-text-body {
-    padding-top: calc(0.85rem * 1.4 + 0.125rem);
-  }
-
-  .case-text-head h2,
-  .case-text-head h3 {
+  .case-text-head h2 {
     margin-bottom: 0;
   }
 
   .case-text--sub {
-    margin-top: 4.5rem;
+    margin-top: 4rem;
+  }
+
+  .case-problems {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 2rem;
   }
 
   .case > .case-media,
