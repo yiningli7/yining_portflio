@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Syncopate:wght@700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <title>联想 2027 校园招聘视觉设计 | Yining Portfolio</title>
-  <link rel="stylesheet" href="../assets/css/site.css?v=9">
+  <link rel="stylesheet" href="../assets/css/site.css?v=15">
 </head>
 <body data-base="../">
   <a class="skip-link" href="#main-content">跳到主要内容</a>
@@ -89,13 +89,133 @@
         </div>
       </section>
 
+      <!-- 02 创意过程：创意提出 → 选定方向 → 核心概念 → 联想业务元素 -->
+      <section class="kv-section" aria-labelledby="process">
+        <h2 class="kv-section-title" id="process" data-ghost="Process">02 创意过程</h2>
+
+        <div class="kv-block">
+          <h3 class="kv-h3">创意提出</h3>
+          <p class="kv-note">基于上文提到的视觉策略，分别从不同方向进行视觉主题的发散，<br>通过AI工具直接生成最终效果图</p>
+        </div>
+
+        <!-- 四个方向做成轮播：居中一张放大，自动播放；悬停 / 聚焦时暂停。
+             没有脚本时退化为可横向滑动的一行。 -->
+        <div class="kv-bleed">
+          <div class="kv-carousel" data-carousel data-carousel-start="2" role="region" aria-roledescription="carousel" aria-label="四个创意方向">
+            <div class="kv-carousel-track">
+              <figure class="kv-slide" aria-roledescription="slide" aria-label="方向一">
+                <img src="../assets/images/projects/lenovo-campus-2027/f161a.png" alt="方向一：等距视角的蓝色校园球场与 2027 字样" width="1024" height="578" loading="lazy">
+              </figure>
+              <figure class="kv-slide" aria-roledescription="slide" aria-label="方向二">
+                <img src="../assets/images/projects/lenovo-campus-2027/a6e54.png" alt="方向二：像素故障风格的长颈鹿角色与「联想你的未来」标题" width="1024" height="576" loading="lazy">
+              </figure>
+              <figure class="kv-slide is-selected" aria-roledescription="slide" aria-label="方向三（选定）">
+                <img src="../assets/images/projects/lenovo-campus-2027/57dd7.png" alt="方向三：IP 角色坐在草坡上眺望云端的未来城市" width="1024" height="576" loading="lazy">
+                <figcaption>（选定）</figcaption>
+              </figure>
+              <figure class="kv-slide" aria-roledescription="slide" aria-label="方向四">
+                <img src="../assets/images/projects/lenovo-campus-2027/10fac.png" alt="方向四：黄色像素路径上的 IP 角色与 2027 字样" width="1644" height="924" loading="lazy">
+              </figure>
+            </div>
+            <div class="kv-carousel-controls" hidden>
+              <button class="kv-carousel-btn" type="button" data-carousel-prev aria-label="上一张">←</button>
+              <div class="kv-carousel-dots" data-carousel-dots></div>
+              <button class="kv-carousel-btn" type="button" data-carousel-next aria-label="下一张">→</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="kv-block">
+          <h3 class="kv-h3">选定方向</h3>
+          <p class="kv-note">在初版创意概念中，选择了<u>以未来城市为核心的场景化设计</u><br>此构图优势在于，<u>与slogan概念更契合，同时场景建筑能够自然地转换融入联想相关产品</u></p>
+        </div>
+
+        <div class="kv-centered">
+          <h4 class="kv-h4">核心概念</h4>
+          <p class="kv-sub">未来城市+联想产品线</p>
+          <p class="kv-sub">AI元素自然融入场景</p>
+        </div>
+
+        <div class="kv-concept">
+          <figure>
+            <img src="../assets/images/projects/lenovo-campus-2027/b7d2d.png" alt="最终黑白草图：长颈鹿、蜗牛、公鸡等角色在云端城市中奔跑，左上为「联想你的未来」标题" width="1580" height="886" loading="lazy">
+            <figcaption>确认最终草图</figcaption>
+          </figure>
+          <figure>
+            <div class="kv-concept-stack">
+              <img src="../assets/images/projects/lenovo-campus-2027/91324.png" alt="配色方案一：蓝紫色调" width="1920" height="1080" loading="lazy">
+              <img src="../assets/images/projects/lenovo-campus-2027/843e0.png" alt="配色方案二：绿紫色调" width="1920" height="1080" loading="lazy">
+              <img src="../assets/images/projects/lenovo-campus-2027/5520e.png" alt="配色方案三：粉紫色调" width="1920" height="1080" loading="lazy">
+            </div>
+            <figcaption>色彩对比</figcaption>
+          </figure>
+        </div>
+
+        <div class="kv-centered">
+          <h4 class="kv-h4">联想业务元素</h4>
+        </div>
+        <!-- 五个圆形局部都裁自同一张草图，用百分比定位还原稿中的取景 -->
+        <ul class="kv-elements">
+          <li><span class="kv-crop"><img src="../assets/images/projects/lenovo-campus-2027/b7d2d.png" alt="" width="1580" height="886" loading="lazy" style="width:458.43%;height:264.69%;left:-73.65%;top:-41.41%"></span>Think Station</li>
+          <li><span class="kv-crop"><img src="../assets/images/projects/lenovo-campus-2027/b7d2d.png" alt="" width="1580" height="886" loading="lazy" style="width:688.56%;height:397.56%;left:-106.72%;top:-262.62%"></span>智能终端</li>
+          <li><span class="kv-crop"><img src="../assets/images/projects/lenovo-campus-2027/b7d2d.png" alt="" width="1580" height="886" loading="lazy" style="width:688.56%;height:397.56%;left:-455.27%;top:-115.82%"></span>水冷技术</li>
+          <li><span class="kv-crop"><img src="../assets/images/projects/lenovo-campus-2027/b7d2d.png" alt="" width="1580" height="886" loading="lazy" style="width:688.56%;height:397.56%;left:-221.55%;top:-110.45%"></span>可持续发展策略</li>
+          <li><span class="kv-crop"><img src="../assets/images/projects/lenovo-campus-2027/b7d2d.png" alt="" width="1580" height="886" loading="lazy" style="width:794.44%;height:458.69%;left:-397.26%;top:-84.83%"></span>天禧ai算力球</li>
+        </ul>
+      </section>
+
+      <!-- 03 KV制作：两段时间轴，左段图在左、右段图在右，按稿中错位排布 -->
+      <section class="kv-section" aria-labelledby="making">
+        <h2 class="kv-section-title" id="making" data-ghost="Process">03 KV制作</h2>
+
+        <!-- 带 reveal / reveal-line 的元素在滚动进入视口时渐显（site.js） -->
+        <div class="kv-flow">
+          <ol class="kv-flow-a reveal-line">
+            <li>
+              <figure class="reveal"><img src="../assets/images/projects/lenovo-campus-2027/b7d2d.png" alt="确定草图：黑白线稿的 KV 构图" width="1580" height="886" loading="lazy"></figure>
+              <div class="kv-step-text reveal">
+                <h3 class="kv-step-title">确定草图</h3>
+                <p>确定大致氛围 为ai生成做准备</p>
+              </div>
+            </li>
+            <li>
+              <figure class="reveal"><img src="../assets/images/projects/lenovo-campus-2027/a9d35.png" alt="手绘上色：在草图上铺出大致色彩的 KV" width="1920" height="1080" loading="lazy"></figure>
+              <div class="kv-step-text reveal">
+                <h3 class="kv-step-title">手绘上色</h3>
+                <p>圈定色彩大致范围，<br>为ai生成做准备</p>
+              </div>
+            </li>
+          </ol>
+          <ol class="kv-flow-b reveal-line" start="3">
+            <li>
+              <div class="kv-step-text reveal">
+                <h3 class="kv-step-title">确定大致效果</h3>
+                <p>分别单独生成各个部件</p>
+              </div>
+              <figure class="reveal"><img src="../assets/images/projects/lenovo-campus-2027/157d5.png" alt="确定大致效果：AI 生成的立体质感 KV 初版" width="1920" height="1080" loading="lazy"></figure>
+            </li>
+            <li>
+              <div class="kv-step-text reveal">
+                <h3 class="kv-step-title">分层生成</h3>
+                <p>分别单独生成各个部件</p>
+              </div>
+              <figure class="kv-layers reveal">
+                <img src="../assets/images/projects/lenovo-campus-2027/2a900.png" alt="背景层：天空、云朵与城市建筑" width="2616" height="1464" loading="lazy">
+                <img src="../assets/images/projects/lenovo-campus-2027/f224b.png" alt="中景层：场景道具与装饰元素" width="1920" height="1080" loading="lazy">
+                <img src="../assets/images/projects/lenovo-campus-2027/2252c.png" alt="角色层：长颈鹿、蜗牛、公鸡等 IP 角色" width="1920" height="1080" loading="lazy">
+              </figure>
+            </li>
+          </ol>
+        </div>
+      </section>
+
     </article>
   </main>
 
   <footer>
     <p>© <span data-current-year></span> Yining</p>
   </footer>
-  <script src="../assets/data/projects.js?v=9"></script>
-  <script src="../assets/js/site.js?v=9"></script>
+  <script src="../assets/data/projects.js?v=15"></script>
+  <script src="../assets/js/site.js?v=15"></script>
 </body>
 </html>

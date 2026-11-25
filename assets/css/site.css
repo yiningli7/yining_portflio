@@ -1218,3 +1218,564 @@ img {
     margin-top: 8rem;
   }
 }
+
+/* ---------- 联想 2027 校招：02 创意过程 ---------- */
+/* 出血行：突破内容宽度铺满视口，body 用 overflow-x: clip 防止横向滚动 */
+body {
+  overflow-x: clip;
+}
+
+.kv-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: 3rem;
+  /* 底部留出「（选定）」说明文字的位置 */
+  padding-bottom: 2rem;
+  overflow: hidden;
+}
+
+.kv-block {
+  margin-top: 4.5rem;
+}
+
+.kv-h3 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(1.6rem, 3vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.135;
+  letter-spacing: 0;
+  color: #000;
+}
+
+.kv-h4 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: #000;
+}
+
+.kv-note {
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #b1b1b1;
+}
+
+.kv-note u {
+  text-underline-offset: 0.2em;
+}
+
+.kv-centered {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.kv-sub {
+  margin: 0.6rem 0 0;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.56);
+}
+
+.kv-section figure {
+  margin: 0;
+}
+
+.kv-section img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.kv-section figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  color: #b1b1b1;
+}
+
+/* 核心概念：大草图 + 三张配色并排 */
+.kv-concept {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.kv-concept img {
+  border-radius: 12px;
+}
+
+.kv-concept-stack {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+/* 联想业务元素：五个圆形局部 */
+.kv-elements {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem 1.1rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.kv-elements li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 5.25rem;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+  color: #b1b1b1;
+}
+
+.kv-crop {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 139 / 135;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.kv-section .kv-crop img {
+  position: absolute;
+  max-width: none;
+}
+
+@media (min-width: 48rem) {
+  .kv-concept {
+    grid-template-columns: 1022fr 322fr;
+    gap: 1.5%;
+  }
+
+  /* 三张配色叠起来与左侧草图等高：间距按栏宽百分比（稿中 17 / 322） */
+  .kv-concept-stack {
+    display: block;
+  }
+
+  .kv-concept-stack img + img {
+    margin-top: 5.28%;
+  }
+
+  .kv-concept img {
+    border-radius: 14px;
+  }
+
+  .kv-elements {
+    flex-wrap: nowrap;
+    gap: 1.9rem;
+  }
+
+  .kv-elements li {
+    width: 8rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* 创意提出轮播
+ * - 所有 slide 同宽，非当前项缩小（scale）；位置由 site.js 按与当前项的距离计算。
+ * - 桌面端尺寸取自稿中选定图与其余图的比例（661 : 504）。
+ */
+.kv-carousel {
+  --slide-w: 72vw;
+  --slide-scale: 0.78;
+  --slide-gap: 0.75rem;
+  position: relative;
+}
+
+/* 无脚本：横向滑动 */
+.kv-carousel-track {
+  display: flex;
+  gap: var(--slide-gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-inline: var(--page-padding);
+}
+
+.kv-slide {
+  flex: none;
+  width: var(--slide-w);
+  scroll-snap-align: center;
+}
+
+.kv-slide img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.kv-slide figcaption {
+  text-align: center;
+}
+
+/* 有脚本：绝对定位 + transform 动画 */
+.kv-carousel.is-ready .kv-carousel-track {
+  display: block;
+  position: relative;
+  overflow: visible;
+  padding: 0;
+  height: calc(var(--slide-w) * 9 / 16 + 2rem);
+  touch-action: pan-y;
+}
+
+.kv-carousel.is-ready .kv-slide {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: calc(var(--slide-w) / -2);
+  transform-origin: 50% calc(var(--slide-w) * 9 / 32);
+  transition: transform 0.7s cubic-bezier(0.22, 0.7, 0.2, 1), opacity 0.7s ease;
+  cursor: pointer;
+}
+
+/* 非居中的图片降为 60% 透明度 */
+.kv-carousel.is-ready .kv-slide:not(.is-active) {
+  opacity: 0.6;
+}
+
+.kv-carousel.is-ready .kv-slide.is-active {
+  cursor: default;
+}
+
+.kv-carousel.is-ready .kv-slide.no-transition {
+  transition: none;
+}
+
+.kv-carousel.is-ready .kv-slide figcaption {
+  transition: opacity 0.4s ease;
+}
+
+.kv-carousel.is-ready .kv-slide:not(.is-active) figcaption {
+  opacity: 0;
+}
+
+.kv-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.kv-carousel-controls[hidden] {
+  display: none;
+}
+
+.kv-carousel-btn {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.kv-carousel-btn:hover {
+  border-color: var(--ink);
+}
+
+.kv-carousel-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.kv-carousel-dots button {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #d9d9d9;
+  cursor: pointer;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.kv-carousel-dots button[aria-current="true"] {
+  width: 1.5rem;
+  background: #000;
+}
+
+@media (min-width: 48rem) {
+  .kv-carousel {
+    --slide-w: 34.4vw;
+    --slide-scale: 0.7625;
+    --slide-gap: 1.09vw;
+  }
+
+  .kv-slide img {
+    border-radius: 1.04vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kv-carousel.is-ready .kv-slide {
+    transition: none;
+  }
+}
+
+/* ---------- 联想 2027 校招：03 KV制作 ----------
+ * 稿中这块宽 1520（x 192–1712），桌面端用 cqi 按比例还原：1cqi = 15.2 设计单位。
+ * 手机端改为一条左侧时间轴，文字在上、图在下。
+ */
+.kv-flow {
+  margin-top: 3rem;
+  container-type: inline-size;
+}
+
+.kv-flow ol {
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 1.5rem;
+}
+
+.kv-flow ol::before {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  top: 0.6rem;
+  bottom: 0;
+  width: 1px;
+  background: #000;
+}
+
+.kv-flow-b {
+  margin-top: 2.5rem !important;
+}
+
+.kv-flow li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.kv-flow li + li {
+  margin-top: 2.5rem;
+}
+
+.kv-flow-a .kv-step-text {
+  order: -1;
+}
+
+.kv-step-title {
+  position: relative;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.135;
+  letter-spacing: 0;
+  color: #000;
+}
+
+/* 时间轴圆点 */
+.kv-step-title::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -1.45rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-top: -0.3rem;
+  border-radius: 50%;
+  background: #000;
+}
+
+.kv-step-text p {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  color: #b1b1b1;
+}
+
+.kv-flow figure img {
+  border-radius: 12px;
+}
+
+/* 分层生成：三层叠放（背景 → 中景 → 角色），前两层透明带描边 */
+.kv-layers {
+  position: relative;
+  width: 92.48%;
+  aspect-ratio: 406 / 263;
+}
+
+.kv-section .kv-layers img {
+  position: absolute;
+  object-fit: cover;
+}
+
+.kv-layers img:nth-child(1) {
+  left: 16.75%;
+  top: 0;
+  width: 83.25%;
+  height: 71.86%;
+}
+
+.kv-layers img:nth-child(2) {
+  left: 8.62%;
+  top: 11.03%;
+  width: 84.98%;
+  height: 73.76%;
+}
+
+.kv-layers img:nth-child(3) {
+  left: 0;
+  top: 25.86%;
+  width: 85.47%;
+  height: 74.14%;
+}
+
+.kv-layers img:nth-child(n + 2) {
+  border: 1px solid #b0b0b0;
+}
+
+@media (min-width: 48rem) {
+  .kv-flow {
+    margin-top: 4.5rem;
+  }
+
+  .kv-flow ol {
+    display: grid;
+    padding: 0;
+  }
+
+  .kv-flow li {
+    display: contents;
+  }
+
+  .kv-flow li + li {
+    margin-top: 0;
+  }
+
+  .kv-flow-a {
+    grid-template-columns: 29.01cqi 1fr;
+    column-gap: 4.93cqi;
+    row-gap: 3.16cqi;
+  }
+
+  .kv-flow .kv-flow-a::before {
+    left: 30.99cqi;
+    top: 1.12cqi;
+  }
+
+  .kv-flow-b {
+    grid-template-columns: 1fr 28.88cqi;
+    column-gap: 6.45cqi;
+    row-gap: 3.75cqi;
+    width: 100%;
+    margin-top: -5.07cqi !important;
+  }
+
+  .kv-flow .kv-flow-b::before {
+    left: auto;
+    right: 31.84cqi;
+    top: 1.05cqi;
+  }
+
+  .kv-step-text {
+    padding-top: 0.5cqi;
+  }
+
+  .kv-flow-a .kv-step-text {
+    order: 0;
+  }
+
+  .kv-flow-b .kv-step-text {
+    text-align: right;
+  }
+
+  .kv-step-title {
+    display: inline-block;
+    font-size: 2.37cqi;
+  }
+
+  .kv-step-title::before {
+    left: -1.45cqi;
+    width: 0.66cqi;
+    height: 0.66cqi;
+    margin-top: -0.33cqi;
+  }
+
+  .kv-flow-b .kv-step-title::before {
+    left: auto;
+    right: -1.78cqi;
+  }
+
+  .kv-step-text p {
+    margin-top: 0.4cqi;
+    font-size: 1.58cqi;
+  }
+
+  .kv-flow figure img {
+    border-radius: 1.32cqi;
+  }
+}
+
+/* ---------- 滚动渐显（.js-reveal 由 site.js 加在 <html> 上） ---------- */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 0.7, 0.2, 1);
+}
+
+.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* 文字比图片晚一拍出现 */
+.js-reveal .kv-step-text.reveal {
+  transition-delay: 0.15s;
+}
+
+/* 时间轴竖线从上往下画出 */
+.js-reveal .reveal-line::before {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.js-reveal .reveal-line.is-visible::before {
+  transform: scaleY(1);
+}
+
+/* 圆点在文字出现后弹出 */
+.js-reveal .reveal .kv-step-title::before {
+  transform: scale(0);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.45s;
+}
+
+.js-reveal .reveal.is-visible .kv-step-title::before {
+  transform: scale(1);
+}
+
+/* 分层生成：三层先叠在角色层的位置，再展开到各自的位置 */
+.js-reveal .kv-layers img {
+  transition: transform 0.9s cubic-bezier(0.22, 0.7, 0.2, 1) 0.35s;
+}
+
+.js-reveal .kv-layers:not(.is-visible) img:nth-child(1) {
+  transform: translate(-20.1%, 36%);
+}
+
+.js-reveal .kv-layers:not(.is-visible) img:nth-child(2) {
+  transform: translate(-10.1%, 20.1%);
+}
