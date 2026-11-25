@@ -1779,3 +1779,77 @@ body {
 .js-reveal .kv-layers:not(.is-visible) img:nth-child(2) {
   transform: translate(-10.1%, 20.1%);
 }
+
+/* ---------- Lark Player IP 主题（.theme-lark）：只作用于该项目页 ----------
+ * 颜色：中性色改为冷灰，与蓝色角色同一色温；强调色取角色的品牌蓝（加深到白底上对比度 ≥ 4.5:1）。
+ * 字号：页面内只用 13 / 16 / 20 / 40 / 72px 五档。
+ * 圆角：图框与象限统一 14px，胶囊标签 999px。
+ * 图片底板：统一为浅冷灰面板；白底图用 multiply 融进面板，不再用描边。
+ */
+.theme-lark {
+  --ink: #1f2328;
+  --ink-muted: #5d6470;
+  --line: #e1e5ea;
+  --bg-raised: #eef1f4;
+  --accent: #1a6fd1;
+  --accent-soft: rgba(26, 111, 209, 0.1);
+  --lark-panel: #eef1f4;
+  --text-xs: 0.8125rem;
+  --text-md: 1.25rem;
+}
+
+/* 字号五档 */
+.theme-lark .case-text .case-step,
+.theme-lark .case-sub-num,
+.theme-lark .case-problems li::before,
+.theme-lark .case-media figcaption,
+.theme-lark .case-meta,
+.theme-lark .tag,
+.theme-lark .keyword-list li {
+  font-size: var(--text-xs);
+}
+
+.theme-lark .case-header .lead,
+.theme-lark .case-sub h3,
+.theme-lark .case-problems li,
+.theme-lark .case-text--closing p {
+  font-size: var(--text-md);
+}
+
+.theme-lark .case-header .lead {
+  line-height: 1.6;
+}
+
+.theme-lark .back-link {
+  font-size: 1rem;
+}
+
+/* 圆角统一 */
+.theme-lark .explore-quad {
+  border-radius: var(--radius-md);
+}
+
+/* 图片底板统一 */
+.theme-lark .media-frame--panel,
+.theme-lark .media-frame--white,
+.theme-lark .media-frame--sketch,
+.theme-lark .explore-quad {
+  background: var(--lark-panel);
+  border: 0;
+}
+
+.theme-lark .media-frame--white img,
+.theme-lark .media-frame--sketch img {
+  mix-blend-mode: multiply;
+}
+
+/* 旧官网截图放进浅色面板，避免与深色主视觉连成两大块深色 */
+.theme-lark .media-frame--shot {
+  aspect-ratio: auto;
+  padding: 5%;
+}
+
+.theme-lark .media-frame--shot img {
+  height: auto;
+  border-radius: 8px;
+}
