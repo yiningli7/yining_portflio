@@ -2155,3 +2155,332 @@ body {
   height: auto;
   border-radius: 8px;
 }
+
+/* ---------- Luma Family 个人 IP（.theme-luma）：只作用于该项目页 ----------
+ * 首屏还原 Figma「1.luma」1920 × 1920 画板。宽屏下 .luma-poster 是尺寸容器，
+ * 位置与字号写成 cqw（画板 px ÷ 19.2），整张画板随宽度等比缩放；
+ * 小字号用 max() 设下限，避免在 1024px 左右缩得过小。
+ * 字体：设计稿用 975 圆体 / 圆体-简 / Momo Trust Display / 焦糖布丁体，
+ * 网页上能装到就用，装不到时依次回退到 Baloo 2（Google Fonts）与系统圆体、苹方。
+ */
+.theme-luma {
+  --luma-ink: #373737;
+  --luma-heading: #3d3836;
+  --luma-muted: #958f8d;
+  --luma-soft: #919191;
+  --luma-label: #7b7370;
+  --luma-blue: #61a1fe;
+  --luma-round: "975Maru SC", "Yuanti SC", "Baloo 2", "PingFang SC", sans-serif;
+  --luma-text: "Yuanti SC", "PingFang SC", sans-serif;
+  --luma-display: "Momo Trust Display", "AaJiaoTangBuDing", "Baloo 2", "Yuanti SC", sans-serif;
+}
+
+.luma-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.luma-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.luma-poster {
+  position: relative;
+  max-width: 1920px;
+  margin-inline: auto;
+  container-type: inline-size;
+  overflow: hidden;
+  background: #fff;
+  font-family: var(--luma-round);
+}
+
+.luma-poster p,
+.luma-poster h2 {
+  margin: 0;
+  max-width: none;
+}
+
+/* 主视觉：画板中 left -63 / top -160，宽 1995，底部 89%→97% 渐隐为白 */
+.luma-hero {
+  position: relative;
+  height: 64.3cqw;
+}
+
+.luma-hero-art {
+  position: absolute;
+  left: -3.281cqw;
+  top: -9.281cqw;
+  width: 103.906cqw;
+  height: 73.135cqw;
+  max-width: none;
+}
+
+.luma-hero::after {
+  content: "";
+  position: absolute;
+  left: -3.281cqw;
+  top: -8.333cqw;
+  width: 103.906cqw;
+  height: 74.635cqw;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 89.26%, #fff 97.324%);
+  pointer-events: none;
+}
+
+.luma-pill {
+  position: absolute;
+  z-index: 1;
+  left: 5.313cqw;
+  top: 4.479cqw;
+  width: 15.625cqw;
+  padding-inline: 1.302cqw;
+  border: max(0.3125cqw, 2px) solid #fff;
+  border-radius: 2.083cqw;
+  color: #fff;
+  font-family: var(--luma-display);
+  font-weight: 800;
+  font-size: max(1.667cqw, 11px);
+  line-height: 1.3;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* 项目介绍：窄屏为阅读流 */
+.luma-intro {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  padding: 0 var(--page-padding) 3rem;
+  color: var(--luma-ink);
+}
+
+.luma-overview {
+  font-family: var(--luma-display);
+  font-weight: 800;
+  color: #958e8c;
+  font-size: 1.25rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.luma-case-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--luma-label);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  order: -1;
+}
+
+.luma-case-label img {
+  width: 0.6rem;
+  height: auto;
+}
+
+.luma-heading {
+  font-family: var(--luma-round);
+  font-weight: 700;
+  color: var(--luma-heading);
+  font-size: 2.6rem;
+  line-height: 1.1;
+}
+
+.luma-chips {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.luma-chips li {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.85rem;
+  border: 2px solid var(--luma-ink);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.luma-desc p {
+  font-family: var(--luma-text);
+  color: var(--luma-ink);
+  font-size: 1rem;
+  line-height: 1.98;
+}
+
+.luma-desc br {
+  display: none;
+}
+
+.luma-desc-en p {
+  color: var(--luma-soft);
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-transform: capitalize;
+}
+
+.luma-ghost,
+.luma-dots {
+  display: none;
+}
+
+.luma-cat {
+  position: relative;
+  width: 11rem;
+  aspect-ratio: 300.362 / 190;
+  overflow: hidden;
+}
+
+/* 与 Figma 相同的裁切：原图放大后只露出抱信封的小猫 */
+.luma-cat img {
+  position: absolute;
+  left: -68.51%;
+  top: -5.55%;
+  width: 188.16%;
+  height: 275.14%;
+  max-width: none;
+}
+
+.luma-year {
+  font-family: var(--luma-text);
+  color: var(--luma-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.luma-foot {
+  margin-top: 2rem;
+}
+
+.luma-foot .back-link {
+  margin: 2.5rem 0 0;
+}
+
+/* 宽屏：按画板坐标绝对定位，画板高度 = 宽度 */
+@media (min-width: 64rem) {
+  .luma-poster {
+    aspect-ratio: 1;
+  }
+
+  .luma-intro {
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0;
+  }
+
+  .luma-intro > * {
+    position: absolute;
+  }
+
+  .luma-overview {
+    left: 5.521cqw;
+    top: 63.75cqw;
+    font-size: 2.098cqw;
+    white-space: nowrap;
+  }
+
+  .luma-case-label {
+    left: 77.031cqw;
+    top: 64.115cqw;
+    gap: 0.729cqw;
+    font-size: max(1.25cqw, 12px);
+    line-height: 1.5;
+    letter-spacing: 0.16em;
+    white-space: nowrap;
+  }
+
+  .luma-case-label img {
+    width: 0.885cqw;
+  }
+
+  .luma-heading {
+    left: 5.26cqw;
+    top: 66.736cqw;
+    font-size: 5.754cqw;
+    line-height: normal;
+    white-space: nowrap;
+  }
+
+  .luma-chips {
+    left: 5.26cqw;
+    top: 73.958cqw;
+    gap: 0.833cqw;
+  }
+
+  .luma-chips li {
+    height: 2.604cqw;
+    padding: 0 0.885cqw;
+    border-width: max(0.156cqw, 2px);
+    font-size: max(1.367cqw, 13px);
+    line-height: 1;
+  }
+
+  /* 背景淡灰字标：-2.56° 斜放在正文后 */
+  .luma-ghost {
+    display: block;
+    left: 24.69cqw;
+    top: 72.344cqw;
+    width: 49.94cqw;
+    height: auto;
+    margin: 1.1cqw 0 0 0.37cqw;
+    transform: rotate(-2.56deg);
+  }
+
+  .luma-desc {
+    left: 48.646cqw;
+    top: 72.083cqw;
+    width: 37.014cqw;
+  }
+
+  .luma-desc p {
+    font-size: max(1.367cqw, 14px);
+    white-space: nowrap;
+  }
+
+  .luma-desc br {
+    display: inline;
+  }
+
+  .luma-desc-en {
+    left: 48.646cqw;
+    top: 86.128cqw;
+    width: 34.394cqw;
+  }
+
+  .luma-desc-en p {
+    font-size: max(0.797cqw, 10px);
+  }
+
+  .luma-cat {
+    left: 32.188cqw;
+    top: 84.74cqw;
+    width: 15.644cqw;
+  }
+
+  .luma-year {
+    left: 5.521cqw;
+    top: 91.146cqw;
+    font-size: 2.5cqw;
+    line-height: normal;
+  }
+
+  .luma-dots {
+    display: block;
+    left: 91.51cqw;
+    top: 92.865cqw;
+    width: 3.906cqw;
+    height: auto;
+  }
+}
