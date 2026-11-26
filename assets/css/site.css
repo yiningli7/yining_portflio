@@ -2484,3 +2484,241 @@ body {
     height: auto;
   }
 }
+
+/* ---------- Luma Family 02 设计过程：Figma「Slide 16:9 - 28」1920 × 1080 ----------
+ * 草图都是同几张扫描稿的不同裁切：.luma-crop 用 --x/--y/--w/--h 定框（cqw），
+ * --il/--it/--iw/--ih 定图片在框里的位置（%），再用 darken 混合压在纸纹上。
+ * 窄屏：标题和性格列表改为阅读流，草图板裁掉顶部空白后等比缩放。
+ */
+.luma-process {
+  position: relative;
+  max-width: 1920px;
+  margin-inline: auto;
+  container-type: inline-size;
+  overflow: hidden;
+  display: grid;
+  gap: 1rem;
+  padding-top: 3rem;
+  background: #fff;
+  font-family: var(--luma-round);
+  color: var(--luma-ink);
+}
+
+.luma-process p,
+.luma-process h2 {
+  margin: 0;
+  max-width: none;
+}
+
+.luma-process > :not(.luma-board) {
+  padding-inline: var(--page-padding);
+}
+
+.luma-process-label { order: -2; }
+.luma-process-year {
+  order: -1;
+  font-family: var(--luma-display);
+  font-weight: 800;
+  color: var(--luma-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.luma-board {
+  order: 10;
+  position: relative;
+  height: 43.229cqw;
+  overflow: hidden;
+}
+
+.luma-board-inner {
+  position: relative;
+  height: 56.25cqw;
+  margin-top: -13.021cqw;
+}
+
+.luma-paper {
+  position: absolute;
+  left: 17.24cqw;
+  top: -27.917cqw;
+  width: 70.521cqw;
+  height: 107.5cqw;
+  overflow: hidden;
+  transform: rotate(90deg);
+}
+
+.luma-paper img {
+  position: absolute;
+  left: -50.16%;
+  top: 0;
+  width: 152.59%;
+  height: 100%;
+  max-width: none;
+}
+
+.luma-paper-veil {
+  position: absolute;
+  left: -1.302cqw;
+  top: -4.115cqw;
+  width: 109.688cqw;
+  height: 55.208cqw;
+  background: rgba(250, 250, 250, 0.58);
+}
+
+.luma-crop {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  height: var(--h);
+  overflow: hidden;
+  mix-blend-mode: darken;
+}
+
+.luma-crop img {
+  position: absolute;
+  left: var(--il);
+  top: var(--it);
+  width: var(--iw);
+  height: var(--ih);
+  max-width: none;
+  mix-blend-mode: darken;
+}
+
+.luma-crop--round {
+  border-radius: 4.948cqw;
+}
+
+/* 设计稿里这张用不规则矢量形状做蒙版，只露出中间的草图 */
+.luma-crop--masked {
+  overflow: visible;
+  -webkit-mask: url("../images/projects/luma-family/sketch-4351-mask.svg") 1.126cqw 5.233cqw / 19.15cqw 23.438cqw no-repeat;
+  mask: url("../images/projects/luma-family/sketch-4351-mask.svg") 1.126cqw 5.233cqw / 19.15cqw 23.438cqw no-repeat;
+}
+
+.luma-crop--masked img {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.luma-step {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.604cqw;
+  padding-inline: 0.6cqw;
+  border: max(0.156cqw, 1.5px) solid var(--luma-ink);
+  border-radius: 1.901cqw;
+  font-weight: 700;
+  font-size: max(1.367cqw, 9px);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.luma-traits {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0.5rem 0 0;
+  list-style: none;
+}
+
+.luma-traits li {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+}
+
+.luma-trait-num {
+  color: var(--luma-ink);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.luma-traits p {
+  font-family: var(--luma-text);
+  color: #8c8c8c;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 64rem) {
+  .luma-process {
+    display: block;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+  }
+
+  .luma-process > :not(.luma-board) {
+    position: absolute;
+    padding: 0;
+  }
+
+  .luma-board {
+    position: absolute;
+    inset: 0;
+    height: auto;
+  }
+
+  .luma-board-inner {
+    margin-top: 0;
+  }
+
+  .luma-step {
+    width: var(--w);
+    padding: 0;
+  }
+
+  .luma-process .luma-process-eyebrow {
+    left: 5.677cqw;
+    top: 3.281cqw;
+    color: rgba(123, 115, 112, 0.8);
+  }
+
+  .luma-process .luma-process-title {
+    left: 5.26cqw;
+    top: 6.265cqw;
+  }
+
+  .luma-process .luma-process-label {
+    left: 68.385cqw;
+    top: 3.073cqw;
+  }
+
+  .luma-process-year {
+    left: 88.281cqw;
+    top: 2.708cqw;
+    font-size: 2.5cqw;
+    line-height: normal;
+  }
+
+  .luma-traits {
+    inset: 0;
+    margin: 0;
+    pointer-events: none;
+  }
+
+  .luma-traits li {
+    display: contents;
+  }
+
+  .luma-trait-num {
+    position: absolute;
+    left: var(--nx);
+    top: var(--ny);
+    font-size: 1.367cqw;
+    line-height: 1.98;
+  }
+
+  .luma-traits p {
+    position: absolute;
+    left: var(--tx);
+    top: var(--ty);
+    font-size: max(0.833cqw, 10px);
+    white-space: nowrap;
+  }
+}
