@@ -2185,14 +2185,17 @@ body {
 }
 
 .luma-bleed {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  /* 与 Lark、联想项目页一致：不出血，宽度跟随正文（--content-width） */
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.luma-bleed + .luma-bleed {
+  margin-top: 2.5rem;
 }
 
 .luma-poster {
   position: relative;
-  max-width: 1920px;
-  margin-inline: auto;
   container-type: inline-size;
   overflow: hidden;
   background: #fff;
@@ -2254,7 +2257,7 @@ body {
   position: relative;
   display: grid;
   gap: 1rem;
-  padding: 0 var(--page-padding) 3rem;
+  padding: 0 0 3rem;
   color: var(--luma-ink);
 }
 
@@ -2492,8 +2495,6 @@ body {
  */
 .luma-process {
   position: relative;
-  max-width: 1920px;
-  margin-inline: auto;
   container-type: inline-size;
   overflow: hidden;
   display: grid;
@@ -2508,10 +2509,6 @@ body {
 .luma-process h2 {
   margin: 0;
   max-width: none;
-}
-
-.luma-process > :not(.luma-board) {
-  padding-inline: var(--page-padding);
 }
 
 .luma-process-label { order: -2; }
