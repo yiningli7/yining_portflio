@@ -2782,10 +2782,10 @@ body {
   }
 }
 
-/* 定稿展示：深色面板，元素按 Figma 画板坐标以百分比定位（画板区域 1925 × 1400） */
+/* 定稿展示：深色面板，元素按 Figma 画板坐标以百分比定位（去掉顶部标签后的画板区域 1925 × 1155.5） */
 .final-stage {
   position: relative;
-  aspect-ratio: 1925 / 1400;
+  aspect-ratio: 1925 / 1155.5;
   container-type: inline-size;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -2804,30 +2804,6 @@ body {
   height: auto;
 }
 
-.final-pill {
-  aspect-ratio: 415 / 83;
-  /* 手机上画板缩得很小，标签保持能放下最小字号的宽度 */
-  min-width: 8rem;
-}
-
-.final-pill img {
-  position: absolute;
-  inset: 0;
-  width: 100% !important;
-  height: 100%;
-}
-
-.final-pill span {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-size: max(0.625rem, 1.88cqw);
-  font-weight: 700;
-  color: #121313;
-  white-space: nowrap;
-}
-
 .final-view {
   overflow: hidden;
 }
@@ -2837,4 +2813,48 @@ body {
   top: 0;
   height: 100%;
   max-width: none;
+}
+
+/* 动作设定：深色面板 + 三列网格，尺寸按 Figma 画板宽度 1920 换算成 cqw */
+.pose-stage {
+  container-type: inline-size;
+  padding: 8cqw 10.9cqw;
+  border-radius: var(--radius-md);
+  background: #121314;
+}
+
+.pose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5cqw 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pose-grid li {
+  display: grid;
+  justify-items: center;
+  gap: 1.8cqw;
+}
+
+/* 每格高度一致，小鸟底部对齐、水平居中 */
+.pose-figure {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 486 / 430;
+}
+
+.case-media .pose-figure img {
+  height: auto;
+  max-width: none;
+  border-radius: 0;
+}
+
+.pose-grid span {
+  font-size: max(0.625rem, 1.88cqw);
+  font-weight: 700;
+  color: #93acca;
 }
