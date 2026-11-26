@@ -32,6 +32,23 @@ window.PORTFOLIO = {
       cover: "assets/images/projects/lenovo-campus-2027/f91d2.png",
       year: 2026,
       tags: ["campaign-design", "key-visual"]
+    },
+    {
+      slug: "tencent-intern-2026",
+      title: "腾讯 2026 实习招聘 KV",
+      summary: "延续鹅fofo IP，以裸眼 3D 与漫画格叙事打造的 2026 实习招聘主视觉。",
+      url: "projects/tencent-intern-2026.html",
+      year: 2026,
+      tags: ["campaign-design", "key-visual"]
+    },
+    {
+      slug: "luma-family",
+      title: "Luma Family 个人 IP 设计",
+      summary: "围绕「守护者」主题创造多个动物角色的个人品牌 IP，延展到网页交互、周边与线下展览。",
+      url: "projects/luma-family.html",
+      cover: "assets/images/projects/luma-family/hero-artwork.png",
+      year: 2025,
+      tags: ["branding", "ip-design"]
     }
   ]
 };
