@@ -2719,3 +2719,60 @@ body {
     white-space: nowrap;
   }
 }
+
+/* 定稿展示：深色面板，元素按 Figma 画板坐标以百分比定位（画板区域 1925 × 1400） */
+.final-stage {
+  position: relative;
+  aspect-ratio: 1925 / 1400;
+  container-type: inline-size;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #121314;
+}
+
+.final-stage > * {
+  position: absolute;
+}
+
+.final-stage img {
+  border-radius: 0;
+}
+
+.case-media .final-stage .final-2d {
+  height: auto;
+}
+
+.final-pill {
+  aspect-ratio: 415 / 83;
+  /* 手机上画板缩得很小，标签保持能放下最小字号的宽度 */
+  min-width: 8rem;
+}
+
+.final-pill img {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100%;
+}
+
+.final-pill span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: max(0.625rem, 1.88cqw);
+  font-weight: 700;
+  color: #121313;
+  white-space: nowrap;
+}
+
+.final-view {
+  overflow: hidden;
+}
+
+.case-media .final-view img {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  max-width: none;
+}
