@@ -245,6 +245,19 @@ function projectItem(project) {
   return item;
 }
 
+// 项目页网格卡片：缩略图 + 标题 + 简介；没有 cover 时显示纯色占位
+function projectCard(project) {
+  const thumb = project.cover
+    ? el("img", { class: "project-card-thumb", src: siteBase + project.cover, alt: "", loading: "lazy" })
+    : el("div", { class: "project-card-thumb project-card-thumb--empty", "aria-hidden": "true" });
+  const link = el("a", { href: siteBase + project.url }, [
+    thumb,
+    el("span", { class: "project-card-title", text: project.title }),
+    el("span", { class: "project-card-summary", text: project.summary })
+  ]);
+  return el("li", { class: "project-card" }, [link]);
+}
+
 function renderProjectPageTags() {
   document.querySelectorAll("[data-project-tags]").forEach((slot) => {
     const project = portfolio.projects.find((p) => p.slug === slot.dataset.projectTags);
@@ -255,7 +268,8 @@ function renderProjectPageTags() {
 
 function renderProjectLists() {
   document.querySelectorAll("[data-project-list]").forEach((slot) => {
-    slot.replaceChildren(...portfolio.projects.map(projectItem));
+    const grid = slot.hasAttribute("data-project-grid");
+    slot.replaceChildren(...portfolio.projects.map(grid ? projectCard : projectItem));
   });
 }
 

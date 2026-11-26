@@ -467,6 +467,68 @@ img {
   font-size: 0.9rem;
 }
 
+/* ---------- 项目网格（Projects 页）---------- */
+.project-grid {
+  list-style: none;
+  margin: 3rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 0.875rem;
+  row-gap: 3rem;
+}
+
+@media (min-width: 40rem) {
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 64rem) {
+  .project-grid { grid-template-columns: repeat(3, 1fr); row-gap: 4.5rem; }
+}
+
+.project-card > a {
+  display: block;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.project-card-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--bg-raised);
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0 0 0.6rem;
+  transition: opacity 0.2s ease;
+}
+
+.project-card > a:hover .project-card-thumb {
+  opacity: 0.88;
+}
+
+.project-card-title,
+.project-card-summary {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.project-card-title {
+  color: var(--ink);
+}
+
+.project-card-summary {
+  color: var(--ink-muted);
+}
+
+.project-card > a:hover .project-card-title {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* ---------- 项目详情页：图文交替的阅读节奏 ---------- */
 .case {
   max-width: none;
